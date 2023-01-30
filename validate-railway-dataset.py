@@ -187,10 +187,10 @@ def main(args):
     category_info = []
     category = []
     if args.data_type == 'railway':
-        with open('railway_metadata.json', 'r') as curr_file:
+        with open('preprocess/railway_metadata.json', 'r') as curr_file:
             category_info = json.load(curr_file)['categories']
     else:
-        with open('catenary_metadata.json', 'r') as curr_file:
+        with open('preprocess/catenary_metadata.json', 'r') as curr_file:
             category_info = json.load(curr_file)['categories']
 
     for obj in category_info:

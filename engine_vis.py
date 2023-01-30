@@ -316,7 +316,7 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
 
 
         
-        if int(curr_id) < 15:
+        if int(curr_id) < 0:
             import torchvision, random
             
             source = torchvision.io.read_image(coco_path + "/test/" + img_names[curr_id])

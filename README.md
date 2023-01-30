@@ -26,11 +26,11 @@ cd ../../..
 
 ## 설치방법 2 (Docker를 활용한 설치)
 아래 링크를 다운로드 하여 도커 설치를 따라해주시면 됩니다.
-1) 철도 선로 데이터셋 : https://github.com/KAI-Devv/BoxDetection-DINO/files/10401838/_DINO_225.docx
-2) 전차선 / 애자 데이터셋 : https://github.com/KAI-Devv/BoxDetection-DINO/files/10401839/_DINO_226.docx <br>
+1) 철도 선로 데이터셋 : https://github.com/KAI-Devv/BoxDetection-DINO/files/10529676/_dino_225_.docx
+2) 전차선 / 애자 데이터셋 : https://github.com/KAI-Devv/BoxDetection-DINO/files/10529678/_dino_226_.docx <br>
 
 
-## 데이터 전처리
+## 데이터 전처리 
 데이터 전처리 자동화 스크립트를 통해 DINO에서 학습 가능한 라벨렝 데이터 포맷으로 변환하고,
 Training:Validation:Test 데이터 비율을 8:1:1로 랜덤하게 분배하여 저장합니다.
 탐지 객체 이름과 id 정보가 포함된 데이터셋 별 메타데이터 파일은 해당 파일을 참고 바랍니다.
@@ -98,16 +98,16 @@ python -m torch.distributed.launch --nproc_per_node=1 main.py \
 ## 유효성 검증
 유효성 검증은 아래 스크립트 포맷 및 예시를 참고합니다.
 ```
-python validate-railway-dataset.py --output logs/{로그 저장 경로} -c config/DINO/DINO_4scale.py --coco_path {preprocess2.py를 통해 획득된 학습 데이터셋 경로} --eval --resume railway_dio.pth --data_type {railway or catenary} --options dn_scalar=100 embed_init_tgt=TRUE dn_label_coef=1.0 dn_bbox_coef=1.0 use_ema=False dn_box_noise_scale=1.0 batch_size 1 num_classes={클래스 수} dn_labelbook_size={클래스 수}
+python validate-railway-dataset.py --output logs/{로그 저장 경로} -c config/DINO/DINO_4scale.py --coco_path {preprocess2.py를 통해 획득된 학습 데이터셋 경로} --eval --resume railway_dio.pth --data_type {railway or catenary} --options dn_scalar=100 embed_init_tgt=TRUE dn_label_coef=1.0 dn_bbox_coef=1.0 use_ema=False dn_box_noise_scale=1.0 batch_size=1 num_classes={클래스 수} dn_labelbook_size={클래스 수}
 ```
 예시)
 1) 철도 선로 데이터셋 <br>
 ```
-python validate-railway-dataset.py --output logs/exp_railway -c config/DINO/DINO_4scale.py --coco_path ../../../dataset/railway_data --eval --resume railway_dino.pth --data_type railway --options dn_scalar=100 embed_init_tgt=TRUE dn_label_coef=1.0 dn_bbox_coef=1.0 use_ema=False dn_box_noise_scale=1.0 batch_size 1 num_classes=58 dn_labelbook_size=58
+python validate-railway-dataset.py --output logs/exp_railway -c config/DINO/DINO_4scale.py --coco_path ../../../dataset/railway_data --eval --resume railway_dino.pth --data_type railway --options dn_scalar=100 embed_init_tgt=TRUE dn_label_coef=1.0 dn_bbox_coef=1.0 use_ema=False dn_box_noise_scale=1.0 batch_size=1 num_classes=58 dn_labelbook_size=58
 ```
 2) 전차선 / 애자 데이터셋 <br>
 ```
-python validate-railway-dataset.py --output logs/exp_catenary -c config/DINO/DINO_4scale.py --coco_path ../../../dataset/catenary_data --eval --resume catenary_dino.pth --data_type catenary --options dn_scalar=100 embed_init_tgt=TRUE dn_label_coef=1.0 dn_bbox_coef=1.0 use_ema=False dn_box_noise_scale=1.0 batch_size 1 num_classes=40 dn_labelbook_size=40
+python validate-railway-dataset.py --output logs/exp_catenary -c config/DINO/DINO_4scale.py --coco_path ../../../dataset/catenary_data --eval --resume catenary_dino.pth --data_type catenary --options dn_scalar=100 embed_init_tgt=TRUE dn_label_coef=1.0 dn_bbox_coef=1.0 use_ema=False dn_box_noise_scale=1.0 batch_size=1 num_classes=40 dn_labelbook_size=40
 ```
 
 <br><br><br>

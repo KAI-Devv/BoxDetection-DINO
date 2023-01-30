@@ -9,9 +9,8 @@ import sys
 ROOT = sys.argv[1]
 if ROOT[-1] == "/":
     ROOT = ROOT[:-1]
-dataset_name = 'railway'
-if 'catenary' in ROOT:
-    dataset_name = 'catenary'
+
+metadata_path = sys.argv[2]
 
 TARGET_PATH = ROOT
 
@@ -45,12 +44,8 @@ num_classes = len(category)
 
 category_info = []
 category = []
-if dataset_name == 'railway':
-    with open('railway_metadata.json', 'r') as curr_file:
-        category_info = json.load(curr_file)['categories']
-else:
-    with open('catenary_metadata.json', 'r') as curr_file:
-        category_info = json.load(curr_file)['categories']
+with open(metadata_path, 'r') as curr_file:
+    category_info = json.load(curr_file)['categories']
 
 for obj in category_info:
     class_name = obj['supercategory'] + '_' + obj['name']

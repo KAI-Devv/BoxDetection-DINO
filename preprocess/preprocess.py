@@ -10,9 +10,7 @@ ROOT = sys.argv[1]
 if ROOT[-1] == "/":
     ROOT = ROOT[:-1]
 
-dataset_name = 'railway'
-if 'catenary' in ROOT:
-    dataset_name = 'catenary'
+metadata_path = sys.argv[2]
 
 TARGET_PATH = ROOT + "_data"
 os.makedirs(TARGET_PATH, exist_ok=True)
@@ -76,12 +74,8 @@ splitter_json = {'train': [], 'val': [], 'test': []}
 
 
 category_info = []
-if dataset_name == 'railway':
-    with open('railway_metadata.json', 'r') as curr_file:
-        category_info = json.load(curr_file)['categories']
-else:
-    with open('catenary_metadata.json', 'r') as curr_file:
-        category_info = json.load(curr_file)['categories']
+with open(metadata_path, 'r') as curr_file:
+    category_info = json.load(curr_file)['categories']
 class_num = len(category_info)
 
 

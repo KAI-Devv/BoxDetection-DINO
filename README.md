@@ -62,7 +62,9 @@ python preprocess/preprocess2.py {데이터셋 폴더 경로}_data {메타데이
     ```
 
 ## 학습
-학습을 위해 아래 스크립트 포맷 및 예시를 참고합니다.
+학습을 위해 아래 스크립트 포맷 및 예시를 참고합니다. DINO에서 제공하는 pretrained 모델은 아래 경로를 통해 다운로드 받아 학습하였습니다.<br>
+https://drive.google.com/file/d/1cJ6WWAYrYjK2xGpv_x1-EqKMeNNW5R0h/view?usp=share_link
+
 
 ```
 python -m torch.distributed.launch --nproc_per_node={GPU 개수} main.py \
